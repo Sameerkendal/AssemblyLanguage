@@ -3,22 +3,20 @@ lui x21,0x10000
 ld x7,0(x21)
 ld x8,8(x21)
 
-#addi x7, x0, -4        
+#ddi x7, x0, -4        
 #addi x8, x0, 64         
 
 addi x9, x0, 0         
 
 # Extract signs
-srli x6, x7, 31       
-andi x6, x6, 1
-srli x10, x8, 31        
-andi x10, x10, 1
+addi x11,x0,63
+srl x6, x7, x11       
+srl x10, x8, x11        
 
 #Absolute Values :
 beq  x6, x0, Skipflip1
 sub  x7, x0, x7
 Skipflip1:
-
 
 beq  x10, x0, Skipflip2
 sub  x8, x0, x8
